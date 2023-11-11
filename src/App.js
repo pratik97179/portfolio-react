@@ -1,7 +1,7 @@
-import './App.scss';
+import "./App.scss";
+import Navbar from "./components/Navbar/Navbar";
 
 import { About, Footer, Header, Skills, Testimonial, Work } from "./container";
-import { Navbar } from "./components";
 
 const App = () => {
     return (
