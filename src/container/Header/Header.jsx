@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 
 import { images } from "../../constants";
 
+import AppWrap from "../../wrapper/AppWrap";
+
 const scaleVariants = {
     whileInView: {
         scale: [0, 1],
@@ -59,7 +61,7 @@ const Header = () => (
             whileInView={scaleVariants.whileInView}
             className="app__header-circles"
         >
-            {[images.flutter, images.redux, images.sass].map(
+            {[images.flutter, images.react, images.javascript].map(
                 (circle, index) => (
                     <div
                         className="circle-cmp app__flex"
@@ -73,4 +75,4 @@ const Header = () => (
     </div>
 );
 
-export default Header;
+export default AppWrap(Header, 'home');
