@@ -23,9 +23,25 @@ const Work = () => {
             setWorks(data);
             setFilterWork(data);
         });
-    });
 
-    const handleWorkFilter = (item) => {};
+        console.log("triggered");
+    }, []);
+
+    const handleWorkFilter = (item) => {
+        setActiveFilter(item);
+        setAnimateCard([{ y: 100, opacity: 0 }]);
+
+        setTimeout(() => {
+            setAnimateCard([{ y: 0, opacity: 1 }]);
+
+            if (item === "All") {
+                setFilterWork(works);
+            } else {
+                console.log(works[0].tags.includes(item));
+                setFilterWork(works.filter((work) => work.tags.includes(item)));
+            }
+        }, 500);
+    };
 
     return (
         <>
@@ -33,7 +49,7 @@ const Work = () => {
                 My Creative <span>Portfolio</span> Section
             </h2>
             <div className="app__work-filter">
-                {["Web App", "Mobile App", "All"].map((item, index) => (
+                {["React", "Flutter", "All"].map((item, index) => (
                     <div
                         key={index}
                         onClick={() => handleWorkFilter(item)}
@@ -50,22 +66,39 @@ const Work = () => {
                 transition={{ duration: 0.5, delayChildren: 0.5 }}
                 className="app__work-portfolio"
             >
-                {filterWork.map((work, index) => (
-                    <div className="app__work-item app__flex" key={index}>
-                        <div className="app__work-img app__flex">
-                            {works && <Carousel data={work.imgUrlList} />}
-                        </div>
-                        <div className="app__work-content app__flex">
-                            <h4 className="bold-text">{work.title}</h4>
-                            <p className="p-text" style={{ marginTop: 10 }}>
-                                {work.description}
-                            </p>
-                            <div className="app__work-tag app__flex">
-                                <p className="p-text">{work.tags[0]}</p>
+                {filterWork.length != 0 ? (
+                    filterWork.map((work, index) => (
+                        <div className="app__work-item app__flex" key={index}>
+                            <div className="app__work-img app__flex">
+                                {works && <Carousel data={work.imgUrlList} />}
+                            </div>
+                            <div className="app__work-content app__flex">
+                                <h4 className="bold-text">{work.title}</h4>
+                                <div className="app__work-content__description">
+                                    <p
+                                        className="p-text"
+                                        style={{ marginTop: 10 }}
+                                    >
+                                        {work.description}
+                                    </p>
+                                </div>
+                                <div className="app__work-tag app__flex">
+                                    <p className="p-text">{work.tags[0]}</p>
+                                </div>
+                                <p
+                                    className="p-text download-link"
+                                    style={{ marginTop: 10 }}
+                                >
+                                    <a href={work.projectLink} target="_blank">
+                                        Download link
+                                    </a>
+                                </p>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <h1>Nothing found :{"("}</h1>
+                )}
             </motion.div>
         </>
     );
