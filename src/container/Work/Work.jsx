@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import "./Work.scss";
 
-import { AiFillEye, AiFillGithub } from "react-icons/ai";
-
-import { animate, motion } from "framer-motion";
-import { AppWrap } from "../../wrapper";
-import { urlFor, client } from "../../client";
+import { motion } from "framer-motion";
+import { AppWrap, MotionWrap } from "../../wrapper";
+import { client } from "../../client";
 
 import "./Work.scss";
 import Carousel from "../../utils/Carousel/Carousel";
@@ -23,8 +21,6 @@ const Work = () => {
             setWorks(data);
             setFilterWork(data);
         });
-
-        console.log("triggered");
     }, []);
 
     const handleWorkFilter = (item) => {
@@ -104,4 +100,4 @@ const Work = () => {
     );
 };
 
-export default Work;
+export default AppWrap(MotionWrap(Work, "app__works"), 'work', 'app__primarybg');
