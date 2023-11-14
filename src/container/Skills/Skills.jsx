@@ -19,7 +19,7 @@ const Skills = () => {
         });
 
         client.fetch(skillsQuery).then((data) => {
-            var ordered_data = data.sort((a, b) => a.priority - b.priority);
+            data.sort((a, b) => a.priority - b.priority);
             setSkills(data);
         });
     }, []);
