@@ -61,7 +61,7 @@ const Skills = () => {
                             </div>
                             <motion.div className="app__skills-exp-works">
                                 {experience.works.map((work) => (
-                                    <>
+                                    <div key={work.name}>
                                         <motion.div
                                             whileInView={{ opacity: [0, 1] }}
                                             transition={{ duration: 0.5 }}
@@ -85,7 +85,7 @@ const Skills = () => {
                                         >
                                             {work.desc}
                                         </Tooltip>
-                                    </>
+                                    </div>
                                 ))}
                             </motion.div>
                         </motion.div>
