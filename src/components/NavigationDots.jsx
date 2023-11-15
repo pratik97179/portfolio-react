@@ -1,5 +1,3 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-
 const NavigationDots = ({ active }) => {
     return (
         <div className="app__navigation">

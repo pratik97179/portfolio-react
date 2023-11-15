@@ -62,7 +62,7 @@ const Work = () => {
                 transition={{ duration: 0.5, delayChildren: 0.5 }}
                 className="app__work-portfolio"
             >
-                {filterWork.length != 0 ? (
+                {filterWork.length !== 0 ? (
                     filterWork.map((work, index) => (
                         <div className="app__work-item app__flex" key={index}>
                             <div className="app__work-img app__flex">
@@ -85,7 +85,11 @@ const Work = () => {
                                     className="p-text download-link"
                                     style={{ marginTop: 10 }}
                                 >
-                                    <a href={work.projectLink} target="_blank">
+                                    <a
+                                        href={work.projectLink}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
                                         Download link
                                     </a>
                                 </p>
@@ -100,4 +104,8 @@ const Work = () => {
     );
 };
 
-export default AppWrap(MotionWrap(Work, "app__works"), 'work', 'app__primarybg');
+export default AppWrap(
+    MotionWrap(Work, "app__works"),
+    "work",
+    "app__primarybg"
+);
